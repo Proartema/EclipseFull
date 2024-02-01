@@ -48,7 +48,7 @@ public class Time {
 		if (second >=0 && second<=59 ) {
 			this.second = second;}
 			else {
-				throw new IllegalArgumentException("Number out of range");
+				t;
 			}
 		}
 	public void setTime(int hour, int minute, int second) {
