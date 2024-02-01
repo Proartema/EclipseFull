@@ -1,38 +1,37 @@
 package ejercicios.esp.ejercicio3;
 
 public class Cuenta {
-	private float saldo;
-	private int deposito=0;
-	private int retiro=0;
-	private float tasaAnual;
-	private float comisionMensual=0;
+	protected float saldo;
+	protected int nDepositos=0;
+	protected int nRetiro=0;
+	protected float tasaAnual;
+	protected float comisionMensual=0;
 	public Cuenta() {
 		
 	}
 	
 	
-	public Cuenta(float saldo, int deposito, int retiro, float tasaAnual, float comisionMensual) {
+	public Cuenta(float saldo, float tasaAnual) {
 		
 		this.saldo = saldo;
-		this.deposito = deposito;
-		this.retiro = retiro;
+		
+		
 		this.tasaAnual = tasaAnual;
-		this.comisionMensual = comisionMensual;
+		
 	}
 	
-
 	public float getSaldo() {
 		return saldo;
 	}
 
 
-	public int getDeposito() {
-		return deposito;
+	public int getnDepositos() {
+		return nDepositos;
 	}
 
 
-	public int getRetiro() {
-		return retiro;
+	public int getnRetiro() {
+		return nRetiro;
 	}
 
 
@@ -51,13 +50,13 @@ public class Cuenta {
 	}
 
 
-	public void setDeposito(int deposito) {
-		this.deposito = deposito;
+	public void setnDepositos(int nDepositos) {
+		this.nDepositos = nDepositos;
 	}
 
 
-	public void setRetiro(int retiro) {
-		this.retiro = retiro;
+	public void setnRetiro(int nRetiro) {
+		this.nRetiro = nRetiro;
 	}
 
 
@@ -70,16 +69,30 @@ public class Cuenta {
 		this.comisionMensual = comisionMensual;
 	}
 
-	
+
 	@Override
 	public String toString() {
-		return "Cuenta [saldo=" + saldo + ", deposito=" + deposito + ", retiro=" + retiro + ", tasaAnual=" + tasaAnual
+		return "Cuenta [saldo=" + saldo + ", deposito=" + nDepositos + ", retiro=" + nRetiro + ", tasaAnual=" + tasaAnual
 				+ ", comisionMensual=" + comisionMensual + "]";
 	}
 
 
-	public float depositar(int cantidad) {
-		return this.saldo=saldo + cantidad;
+	public void depositar(float cantidad) {
+		
+		this.saldo=saldo + cantidad;
+		this.nDepositos++;
+		
 	}
-	
+	public void retirar(float cantidad ) {
+		
+		 this.saldo-= cantidad;
+		 this.nRetiro++;
+	}
+	public void calcularInteres() {
+		System.out.println ("El interes es " + saldo * this.tasaAnual);
+	}
+	public void extractoMensual() {
+		this.saldo=saldo - comisionMensual;
+		this.calcularInteres();
+	}
 }
