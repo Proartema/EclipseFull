@@ -65,15 +65,57 @@ public class Time {
 		return  this;
 	}
 	public Time previousSecond() {
-		this.hour=hour;
-		this.minute=minute;
-		this.setSecond(second--);
-		
+		if (second==0)
+			second=59;
+			if (minute==0)
+				minute=59;
+				if (hour==0)
+					hour=23;
 		return  this;
 	}
 	@Override
 	public String toString() {
-		return hour + " : " + minute + " : " + second;
+		return zeroToTheLeft(hour) + " : " + zeroToTheLeft(minute) + " : " + zeroToTheLeft(second);
+	}
+	public Time previousSecondNew() {
+
+	       Time time = new Time(this.hour, this.minute, this.second);
+	       substractASecond(time);
+	       return time;
+
+	}
+	
+	private String zeroToTheLeft(int num) {
+		
+		String result="";
+		
+		result= String.valueOf(num);
+		
+		if (num<10)
+			result = "0" + result;
+		
+		return result;
+	}
+	
+	// Esto es un patron cascade
+	
+	
+	private void substractASecond(Time time) {
+		if (time.getSecond()==0) {
+			time.setSecond(59);
+			if (time.getMinute()==0) {
+				time.setMinute(59);
+				if (time.getHour()==0) {
+					time.setHour(23);
+				} else {
+					time.setHour(getHour()-1);
+				}
+			} else {
+				time.setMinute(time.getMinute()-1);
+			}
+		}else {
+			time.setSecond(time.getSecond()-1);
+		}
 	}
 	
 	
