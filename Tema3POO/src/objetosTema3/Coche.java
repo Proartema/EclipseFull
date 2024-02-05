@@ -102,7 +102,7 @@ public abstract class Coche {
 		return (precio - coste) * iva;
 	}
 
-	@Override
+	
 	public String toString() {
 
 		return "Coche [color=" + color + ", marca=" + this.marca + ", modelo=" + modelo + "]";
