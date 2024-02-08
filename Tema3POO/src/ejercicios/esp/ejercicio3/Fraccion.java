@@ -1,6 +1,8 @@
 package ejercicios.esp.ejercicio3;
 
-public class Fraccion extends numerico{
+import java.util.Scanner;
+
+public class Fraccion{
 	private int numerador;
 	private int denominador;
 	
@@ -42,7 +44,14 @@ public class Fraccion extends numerico{
 	public void setDenominador(int denominador) {
 		this.denominador = denominador;
 	}
-
+	
+	public void Calcular_mcd () {
+		
+	}
+	public void
+	public v Leer_fraccion() {
+		Scanner input = new Scanner(System.in);
+	}
 
 
 	@Override
