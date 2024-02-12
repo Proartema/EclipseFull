@@ -1,6 +1,6 @@
 package objetosTema3;
 
-public class Empleado {
+public class Empleado implements Comparable<Empleado> {
 	
 	private int id;
 	private String nombre;
@@ -65,5 +65,11 @@ public class Empleado {
 		
 		return "Empleado [id= " + id + ", Nombre= " + nombre + ", Apellido= " + apellido + ", Salario= " + salario + "]";
 		}
+
+	@Override
+	public int compareTo(Empleado o) {
+		
+		return this.salario>o.getSalario()?1:(this.salario==o.getSalario()?0:-1);
+	}
 
 }
