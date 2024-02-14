@@ -1,6 +1,6 @@
 package ejercicios.esp.ejercicio3;
 
-public class Invoice extends Customer implements Comparable<Customer>{
+public class Invoice implements Comparable<Invoice>{
 	private int id;
 	public Customer Customer;
 	private double amount;
@@ -14,10 +14,7 @@ public class Invoice extends Customer implements Comparable<Customer>{
 		this.amount = amount;
 	}
 	
-	public Invoice(int id, String name, int discount) {
-		super(id, name, discount);
-		
-	}
+	
 	public int getId() {
 		return id;
 	}
@@ -47,7 +44,7 @@ public class Invoice extends Customer implements Comparable<Customer>{
 	}
 	public double getAmountAfterDiscount() {
 		
-		return this.amount=this.amount-(this.amount*(getDiscount()/100));
+		return this.amount=this.amount-(this.amount*(Customer.getDiscount()/100));
 	}
 	
 	@Override
@@ -56,9 +53,9 @@ public class Invoice extends Customer implements Comparable<Customer>{
 				+ getCustomerDiscount() + "%), amount=" + getAmountAfterDiscount() + "]";
 	}
 	@Override
-	public int compareTo(ejercicios.esp.ejercicio3.Customer o) {
+	public int compareTo(Invoice o) {
 		
-		return (this.getAmount()>o.g;
+		return this.getCustomer().compareTo(o.getCustomer());
 	}
 	
 }

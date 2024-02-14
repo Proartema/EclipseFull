@@ -1,6 +1,6 @@
 package ejercicios.esp.ejercicio3;
 
-public class Customer{
+public class Customer implements Comparable<Customer>{
 	protected int id;
 	protected String name;
 	protected int discount;
@@ -34,7 +34,12 @@ public class Customer{
 	public String toString() {
 		return name + "(" + id + ")(" + discount + "%)";
 	}
-	
+	@Override
+	public int compareTo(Customer o) {
+		// TODO Auto-generated method stub
+		return this.getId()-o.getId();
+	}
+
 	
 	
 	
