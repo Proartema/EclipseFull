@@ -5,7 +5,7 @@ public class appArrayMetodos {
 	public static void main(String[] args) {
 		
 		
-		int[] arrayInteger = ArrayMetodos.llenarArrayDecimales(20, 50);
+		int[] arrayInteger = ArrayMetodos.llenarArrayInt(20, 50);
 		
 		ArrayMetodos.mostrarArray(arrayInteger);
 		int[] arrayRevertido = ArrayMetodos.revierteArray(arrayInteger);

@@ -213,14 +213,14 @@ public class ArrayMetodos {
        return resultado;
 
    }
-   public static int[] llenarArrayDecimales(int numElementos, int maxDecimal) {
+   public static int[] llenarArrayInt(int numElementos, int maxInt) {
    int[] resultado = new int[numElementos];
    Random rand = new Random();
    // numero aleatorio entre 0 y maxdecimal que cambiarlo
 
    for (int i = 0; i < numElementos; i++) {
 
-       resultado[i] = rand.nextInt() * maxDecimal;
+       resultado[i] = rand.nextInt(maxInt);
 
    }
 
@@ -242,20 +242,31 @@ public class ArrayMetodos {
 		  arrayParam[i]=aux;
 	   }
    }
-   public static Integer[] llenarArrayDecimalesWrap(int numElementos, int maxDecimal) {
+   public static Integer[] llenarArrayDecimalesWrap(int numElementos, int maxInt) {
+ 
+	   return llenarArrayDecimalesWrap(numElementos,0,maxInt);
+   }
+   public static Integer[] llenarArrayDecimalesWrap(int numElementos, int minInt, int maxInt) {
 	   Integer[] resultado = new Integer[numElementos];
 	   Random rand = new Random();
 	   // numero aleatorio entre 0 y maxdecimal que cambiarlo
 
 	   for (int i = 0; i < numElementos; i++) {
 
-	       resultado[i] = rand.nextInt() * maxDecimal;
+	       resultado[i] = rand.nextInt(minInt,maxInt);
 
 	   }
 	   
 	   return resultado;
    }
    public static Double[] llenarArrayDecimalesWrap(int numElementos, double maxDecimal) {
+
+  
+
+       return llenarArrayDecimalesWrap(numElementos,0,maxDecimal);
+
+   }
+   public static Double[] llenarArrayDecimalesWrap(int numElementos,double minDecimal, double maxDecimal) {
 
        Double[] resultado = new Double[numElementos];
        Random rand = new Random();
@@ -266,7 +277,7 @@ public class ArrayMetodos {
 
        for (int i = 0; i < numElementos; i++) {
 
-           resultado[i] = rand.nextDouble() * maxDecimal;
+           resultado[i] = rand.nextDouble(minDecimal,maxDecimal);
 
        }
 
@@ -308,5 +319,15 @@ public class ArrayMetodos {
 	   }
 	   return arrayResultado;
 	   
+   }
+   public static <T extends Number> T[] sumaArrays(T[] array1, T[] array2) {
+	   
+	  Number[] arrayResultado =  new Number[array1.length];
+	   for (int i=0 ; i< arrayResultado.length ; i++) {
+		   
+		   arrayResultado[i] = array1[i].doubleValue() + array2[i].doubleValue();
+		   
+	   }
+	   return (T[]) arrayResultado;
    }
 }
