@@ -1,6 +1,6 @@
-package ejercicios.eningles.exercise16_17_18_19;
+package IESJANDULA.proyectounidad4.ejercicios.eningles.exercise16_17_18_19;
 
-import arrays.ArrayMetodos;
+import IESJANDULA.proyectounidad4.arrays.ArrayMetodos;
 
 public class Exercise18_19 {
 	

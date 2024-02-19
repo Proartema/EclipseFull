@@ -1,8 +1,8 @@
-package ejercicios.eningles.exercise16_17_18_19;
+package IESJANDULA.proyectounidad4.ejercicios.eningles.exercise16_17_18_19;
 
 import java.util.Random;
 
-import arrays.ArrayMetodos;
+import IESJANDULA.proyectounidad4.arrays.ArrayMetodos;
 
 public class Exercise16_17 {
 

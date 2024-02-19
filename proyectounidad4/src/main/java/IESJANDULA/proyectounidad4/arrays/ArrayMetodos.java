@@ -1,4 +1,4 @@
-package arrays;
+package IESJANDULA.proyectounidad4.arrays;
 
 import java.lang.reflect.Array;
 import java.util.Random;

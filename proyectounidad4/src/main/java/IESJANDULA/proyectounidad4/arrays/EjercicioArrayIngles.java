@@ -1,4 +1,4 @@
-package arrays;
+package IESJANDULA.proyectounidad4.arrays;
 
 import java.util.Locale;
 import java.util.Scanner;

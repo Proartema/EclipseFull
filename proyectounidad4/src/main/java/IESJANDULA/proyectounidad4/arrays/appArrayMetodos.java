@@ -1,4 +1,4 @@
-package arrays;
+package IESJANDULA.proyectounidad4.arrays;
 
 public class appArrayMetodos {
 
