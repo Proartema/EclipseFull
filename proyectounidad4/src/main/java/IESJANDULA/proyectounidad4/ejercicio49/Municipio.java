@@ -1,6 +1,6 @@
 package IESJANDULA.proyectounidad4.ejercicio49;
 
-public class Municipio {
+public class Municipio implements Comparable<Municipio> {
 	private String nombre;
 	private int poblacion;
 	private double temperaturaMedia;

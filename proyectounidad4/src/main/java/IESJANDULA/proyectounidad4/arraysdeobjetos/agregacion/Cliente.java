@@ -48,7 +48,7 @@ public class Cliente implements Comparable<Cliente>  {
 		if (cl == null)
 			return false;
 		
-		return Objects.equals(apellidos, cl.apellidos) && Objects.equals(dni, cl.dni) && Objects.equals(nombre, cl.nombre);
+		return Objects.equals(dni, cl.dni);
 	}
 
 	@Override

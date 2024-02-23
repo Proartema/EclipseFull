@@ -1,5 +1,7 @@
 package IESJANDULA.proyectounidad4.arraysdeobjetos.agregacion;
 
+import IESJANDULA.proyectounidad4.arrays.ArrayMetodos;
+
 public class AppClientes {
 	
 		public static void main(String[] args) {
@@ -13,9 +15,10 @@ public class AppClientes {
 			t1.addCliente(c1);
 			t1.addCliente(c2);
 			
-			t1.borrarCliente(c2);
 			
-			System.out.println(t1);
+			t1.getClientesReales();
+			ArrayMetodos.mostrarArray((t1.buscarClientePorDni("444444")));;
+			
 			
 			
 		}
