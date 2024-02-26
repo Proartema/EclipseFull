@@ -16,7 +16,7 @@ public class AppBiblioteca {
 		biNacional.agregarLibro(libro3);
 		
 		//biNacional.mostrarLibros();
-		biNacional.buscarLibro("Rayuelo");
+		biNacional.buscarLibro("Rayuela");
 	}
 	
 	
