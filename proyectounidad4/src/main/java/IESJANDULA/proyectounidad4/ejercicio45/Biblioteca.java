@@ -102,6 +102,21 @@ public class Biblioteca {
 				libros[i] = libroNulo;
 			}
 		}
+	   
+	   public void buscarLibro(String nombre) {
+			boolean encontrado = false;
+			for (int i = 0; i < CAPACIDAD && !encontrado; i++) {
+				if (libros[i].getTitulo().equals(nombre)) {
+					encontrado = true;
+					System.out.println(libros[i].toString());
+				}
+				
+			}
+			if (encontrado == false) {
+				System.out.println("No se ha encontrado el libro");
+			}
+			
+		}
 
 	
 	
