@@ -1,6 +1,6 @@
 package IESJANDULA.proyectounidad4.ejercicio45;
 
-public class Libro implements Comparable<Libro>{
+public abstract class Libro implements Comparable<Libro>{
 	private String titulo;
 	private String autor;
 	private int anoPublicacion;
@@ -69,7 +69,7 @@ public class Libro implements Comparable<Libro>{
 	@Override
 	public int compareTo(Libro o) {
 		// TODO Auto-generated method stub
-		return 0;
+		return this.getReferenciaBibliografica().compareTo(o.getReferenciaBibliografica());
 	}
 	
 	
