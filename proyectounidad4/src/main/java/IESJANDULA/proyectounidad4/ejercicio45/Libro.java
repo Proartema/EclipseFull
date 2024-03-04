@@ -1,8 +1,8 @@
 package IESJANDULA.proyectounidad4.ejercicio45;
 
-public abstract class Libro implements Comparable<Libro>{
+public abstract class Libro implements Comparable<Libro>,infoAutor{
 	private String titulo;
-	private String autor;
+	private Autor autor;
 	private int anoPublicacion;
 	private String editorial;
 	private String referenciaBibliografica;
@@ -11,7 +11,7 @@ public abstract class Libro implements Comparable<Libro>{
 		
 	}
 
-	public Libro(String titulo, String autor, int anoPublicacion, String editorial, String referenciaBibliografica) {
+	public Libro(String titulo, Autor autor, int anoPublicacion, String editorial, String referenciaBibliografica) {
 		
 		this.titulo = titulo;
 		this.autor = autor;
@@ -24,7 +24,7 @@ public abstract class Libro implements Comparable<Libro>{
 		return titulo;
 	}
 
-	public String getAutor() {
+	public Autor getAutor() {
 		return autor;
 	}
 
@@ -44,7 +44,7 @@ public abstract class Libro implements Comparable<Libro>{
 		this.titulo = titulo;
 	}
 
-	public void setAutor(String autor) {
+	public void setAutor(Autor autor) {
 		this.autor = autor;
 	}
 
@@ -59,6 +59,8 @@ public abstract class Libro implements Comparable<Libro>{
 	public void setReferenciaBibliografica(String referenciaBibliografica) {
 		this.referenciaBibliografica = referenciaBibliografica;
 	}
+	
+	public abstract EnumLibro tipoLibro();
 
 	@Override
 	public String toString() {

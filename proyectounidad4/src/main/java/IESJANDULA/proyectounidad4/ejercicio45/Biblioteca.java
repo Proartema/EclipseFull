@@ -7,7 +7,7 @@ import IESJANDULA.proyectounidad4.ejercicio49.Municipio;
 public class Biblioteca {
 
 	private static final int CAPACIDAD = 500;
-	private static Libro libroNulo= new Libro("Libronulo","Libronulo",0,"Libronulo","ZZZZZZZZZZZZ");
+	private static Libro libroNulo= new LibroEducativo("Libronulo",new Autor("ZZZZZZ","XXXXXX","ZZZZZZ"),0,"Libronulo","ZZZZZZZZZZZZ","Matemáticas");
 	private String nombre;
 	private Libro[] libros;
 	private int contLibros=0;

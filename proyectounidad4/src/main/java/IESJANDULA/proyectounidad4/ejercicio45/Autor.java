@@ -47,7 +47,7 @@ public class Autor implements Comparable<Autor>,infoAutor {
 	@Override
 	public String obtenInforAutor() {
 		// TODO Auto-generated method stub
-		return this.toString();
+		return this.getNombre() + this.getApellido();
 	}
 
 	@Override
