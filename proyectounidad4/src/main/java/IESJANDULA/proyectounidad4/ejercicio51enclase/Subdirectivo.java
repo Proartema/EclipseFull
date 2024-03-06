@@ -1,4 +1,4 @@
-package IESJANDULA.proyectounidad4.ejercicio51;
+package IESJANDULA.proyectounidad4.ejercicio51enclase;
 
 public class Subdirectivo extends Empleado{
 	
@@ -25,12 +25,15 @@ public class Subdirectivo extends Empleado{
 		this.primaAnual = primaAnual;
 	}
 	
-	
+	public double calculaImpuestos(double salarioBruto,double impuestos) {
+		
+		return salarioBruto*impuestos;
+	}
 	@Override
 	public double calculaSueldo(double impuestos) {
 		double salarioBruto= this.getSalario()+(porcentajeBonusAntiguedad*this.getAntiguedad()+primaAnual);
 		
-		return salarioBruto-this.calculaImpuestos(salarioBruto,impuestos);
+		return salarioBruto-calculaImpuestos(salarioBruto,impuestos);
 	}
 
 	@Override

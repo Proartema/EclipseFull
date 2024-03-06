@@ -6,7 +6,8 @@ public class Empresa {
 
 	private final int MAX_CLIENTE = 1000;
 	private final int MAX_EMPLEADO = 1000;
-
+	private int contEmpleados=0;
+	private int contClientes=0;
 	private String NIF;
 
 	private String nombre;
@@ -73,13 +74,21 @@ public class Empresa {
 	 * Añade un empleado si hay sitio, sino devuelve fals
 	 *
 	 */
-
+	public void addEmpleados (Empleado[] emplAdd) {
+		
+		for (int i=0; i<emplAdd.length && contEmpleados < MAX_EMPLEADO ; i++) {
+			
+			if (emplAdd[i]!=null)
+				agregarEmpleado(emplAdd[i]);
+		}
+	}
 	public boolean agregarEmpleado(Empleado e) {
 		int cont = 0;
 		boolean hayHueco = false;
 		while (cont < this.empleados.length && !hayHueco) {
 			if (empleados[cont] == null) {
 				hayHueco = true;
+				contEmpleados++;
 			} else {
 				cont++;
 
@@ -103,7 +112,7 @@ public class Empresa {
 			if (empleados[i].equals(e)) {
 				encontrado = true;
 				empleados[i] = null;
-
+				contEmpleados--;
 			}
 		}
 		return encontrado;
@@ -157,18 +166,18 @@ public class Empresa {
 	 */
 
 	public Empleado buscarEmpleadoPorNif(String nif) {
+		
 		boolean encontrado = false;
+		Empleado emplRes= null;
 		for (int i = 0; i < MAX_EMPLEADO && !encontrado; i++) {
-			if (empleados[i].getNif().equals(nif)) {
+			if (empleados[i]!= null && empleados[i].getNif().equals(nif)) {
 				encontrado = true;
-				return empleados[i];
+				emplRes= empleados[i];
 			}
 			
 		}
-		if (encontrado == false) {
-			System.out.println("No se ha encontrado la nota");
-		}
-		return null;
+		
+		return emplRes;
 	}	
 	
 	public Empleado buscarEmpleadoPorNifVirgi(String nif) {
@@ -242,19 +251,23 @@ public class Empresa {
 	 * tipo de empleado para identificar quien es Subdirectivo
 	 *
 	 */
-
-	private Subdirectivo[] getSubdirectivos() {
+	private int contarSubdirectivos() {
 		int arrayParam=0;
-		int arrayCopia=0;
-        for(int i=0; i<empleados.length; i++) {
+		for(int i=0; i<empleados.length; i++) {
             if(empleados[i] instanceof Subdirectivo) {
                  arrayParam++;
             }
         }
-        Subdirectivo[] SubD = new Subdirectivo[arrayParam];
+		return arrayParam;
+	}
+	private Subdirectivo[] getSubdirectivos() {
+		int arrayCopia=0;
+		int num= contarSubdirectivos();
+        Subdirectivo[] SubD = new Subdirectivo[num];
+       
         for(int i=0; i<empleados.length; i++) {
             if(empleados[i] instanceof Subdirectivo) {
-                 SubD[arrayCopia]=empleados[i];
+                 SubD[arrayCopia]=(Subdirectivo) empleados[i];
                  arrayCopia++;
             }
         }
@@ -280,8 +293,14 @@ public class Empresa {
 	 */
 
 	private double calcularSalariosTotales() {
-
-		return 0.0;
+		
+		double sumSalario=0;
+		
+		for (Empleado emp: empleados)
+			if (emp!=null) {
+				sumSalario+= emp.calculaSueldo(sumSalario);
+			}
+		return sumSalario;
 	}
 
 }

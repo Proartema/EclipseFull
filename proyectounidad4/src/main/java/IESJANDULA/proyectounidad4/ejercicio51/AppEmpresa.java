@@ -10,7 +10,7 @@ public class AppEmpresa {
 			Tecnico Paco = new Tecnico("Paco","Fiestas","5678901234",35,1008,"Oficina");
 			
 			Manresa.agregarEmpleado(Paco);
-			Manresa.buscarEmpleadoPorNifVirgi("5678901234");
+			System.out.println(Manresa.buscarEmpleadoPorNif("5678901234"));
 	}
 
 }

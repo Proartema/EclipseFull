@@ -1,15 +1,18 @@
-package IESJANDULA.proyectounidad4.ejercicio51;
+package IESJANDULA.proyectounidad4.ejercicio51enclase;
 
 import java.util.Objects;
 
+import IESJANDULA.proyectounidad4.ejercicio51.EnumCategoria;
+
 public abstract class Empleado implements Comparable<Empleado>{
+	
 	private String nombre;
 	private String apellidos;
 	private String nif;
 	private int antiguedad;
-	private int salario;
+	private double salario;
 	
-	public Empleado(String nombre, String apellidos, String nif, int antiguedad, int salario) {
+	public Empleado(String nombre, String apellidos, String nif, int antiguedad, double salario) {
 		super();
 		this.nombre = nombre;
 		this.apellidos = apellidos;
@@ -34,7 +37,7 @@ public abstract class Empleado implements Comparable<Empleado>{
 		return antiguedad;
 	}
 
-	public int getSalario() {
+	public double getSalario() {
 		return salario;
 	}
 
@@ -54,18 +57,14 @@ public abstract class Empleado implements Comparable<Empleado>{
 		this.antiguedad = antiguedad;
 	}
 
-	public void setSalario(int salario) {
+	public void setSalario(double salario) {
 		this.salario = salario;
 	}
-	@Override
-	public String toString() {
-		return "Empleado [nombre=" + nombre + ", apellido=" + apellidos + ", nif=" + nif + ", antiguedad=" + antiguedad
-				+ ", salario=" + salario + "]";
-	}
-
+	
+	
 	@Override
 	public int hashCode() {
-		return Objects.hash(antiguedad, apellidos, nif, nombre, salario);
+		return Objects.hash(nif);
 	}
 
 	@Override
@@ -77,9 +76,14 @@ public abstract class Empleado implements Comparable<Empleado>{
 		if (getClass() != obj.getClass())
 			return false;
 		Empleado other = (Empleado) obj;
-		return antiguedad == other.antiguedad && Objects.equals(apellidos, other.apellidos)
-				&& Objects.equals(nif, other.nif) && Objects.equals(nombre, other.nombre)
-				&& Double.doubleToLongBits(salario) == Double.doubleToLongBits(other.salario);
+		return Objects.equals(nif, other.nif);
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "Empleado [tipo=" + this.tipoEmpleado() +"nombre=" + nombre + ", apellidos=" + apellidos + ", nif=" + nif + ", antiguedad=" + antiguedad
+				+ ", salario=" + salario + "]";
 	}
 
 	@Override
@@ -90,10 +94,7 @@ public abstract class Empleado implements Comparable<Empleado>{
 	
 	public abstract double calculaSueldo(double impuestos); 
 	public abstract EnumCategoria tipoEmpleado();
-	protected double calculaImpuestos(double salarioBruto,double impuestos) {
-		
-		return salarioBruto*impuestos;
-	}
+	
 	
 	
 }

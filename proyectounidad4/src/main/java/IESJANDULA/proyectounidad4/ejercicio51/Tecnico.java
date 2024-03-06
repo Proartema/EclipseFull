@@ -23,14 +23,7 @@ public class Tecnico extends Empleado{
 		this.area = area;
 	}
 
-	public void setPorcentajeAntiguedad(double porcentajeAntiguedad) {
-		this.porcentajeAntiguedad = porcentajeAntiguedad;
-	}
-
-	public double calculaImpuestos(double salarioBruto,double impuestos) {
-		
-		return salarioBruto*impuestos;
-	}
+	
 	
 	@Override
 	public double calculaSueldo(double impuestos) {

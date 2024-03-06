@@ -26,10 +26,7 @@ public class Directivo extends Empleado {
 		this.beneficiosDep = beneficiosDep;
 	}
 	
-	public double calculaImpuestos(double salarioBruto,double impuestos) {
-		
-		return salarioBruto*impuestos;
-	}
+	
 	@Override
 	public double calculaSueldo(double impuestos) {
 		double salarioBruto= this.getSalario()+(bonusPorcentaje*beneficiosDep);
