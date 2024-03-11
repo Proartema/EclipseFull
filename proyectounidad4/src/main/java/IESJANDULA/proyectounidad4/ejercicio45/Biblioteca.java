@@ -1,7 +1,9 @@
 package IESJANDULA.proyectounidad4.ejercicio45;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
+import IESJANDULA.proyectounidad4.ejercicio44.Nota;
 import IESJANDULA.proyectounidad4.ejercicio49.Municipio;
 
 public class Biblioteca {
@@ -126,6 +128,24 @@ public class Biblioteca {
 		return "Biblioteca [nombre=" + nombre + ", libros=" + Arrays.toString(libros) + "]";
 	}
 	
+	 
+	 public Libro[]  devuelvaLibroOrdenado() {
+		 
+		 Libro [] res= this.getLibros();
+		 
+		 Arrays.sort(res);
+		 
+		 return res;
+	 }
+	
+	 public Libro[] devuelvaLibroOrdenado(Comparator<Libro> comp) {
+		 
+		 Libro [] res= this.getLibros();
+		 
+		 Arrays.sort(res,comp);
+		 
+		 return res;
+	 }
 	
 	
 }

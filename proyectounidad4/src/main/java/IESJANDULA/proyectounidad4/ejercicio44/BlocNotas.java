@@ -1,5 +1,7 @@
 package IESJANDULA.proyectounidad4.ejercicio44;
 
+import java.util.Arrays;
+import java.util.Comparator;
 
 public class BlocNotas {
 	private static final int CAPACIDAD = 300;
@@ -95,7 +97,33 @@ public class BlocNotas {
 			
 			return contNotas>0;
 		}
+	 
+	 public void ordenarNotas() {
+		 
+		 Arrays.sort(notas);
+	 }
+	 
+	 public void ordenarNotas(Comparator<Nota> comp) {
+		 
+		 Arrays.sort(notas, comp);
+	 }
+	 
+	 public Nota []  devuelvaNotasOrdenado() {
+		 
+		 Nota [] res= this.getNotas();
+		 
+		 Arrays.sort(res);
+		 
+		 return res;
+	 }
 	
-	
+	 public Nota []  devuelvaNotasOrdenado(Comparator<Nota> comp) {
+		 
+		 Nota [] res= this.getNotas();
+		 
+		 Arrays.sort(res,comp);
+		 
+		 return res;
+	 }
 	
 }
