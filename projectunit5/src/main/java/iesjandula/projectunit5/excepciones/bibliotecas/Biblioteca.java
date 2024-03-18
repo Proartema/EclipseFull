@@ -1,6 +1,7 @@
 package iesjandula.projectunit5.excepciones.bibliotecas;
 
-
+import java.util.Arrays;
+import java.util.Comparator;
 
 public class Biblioteca {
 	
@@ -203,6 +204,19 @@ public class Biblioteca {
 		}
 	}
 	
+	public boolean esNulo(Libro libro) {
+		return libro.compareTo(libroNulo)==0;
+	}
 	
-
+	public void  ordenarLibros() {
+	
+		Arrays.sort(libros);
+		listarLibros();
+	}
+	
+	public void  ordenarLibrosPor(Comparator<Libro>comparador) {
+		
+		Arrays.sort(libros, comparador);
+		listarLibros();
+	}
 }
