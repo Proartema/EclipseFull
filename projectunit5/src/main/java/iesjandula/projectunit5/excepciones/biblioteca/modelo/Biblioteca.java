@@ -1,4 +1,4 @@
-package iesjandula.projectunit5.excepciones.bibliotecas;
+package iesjandula.projectunit5.excepciones.biblioteca.modelo;
 
 import java.util.Arrays;
 import java.util.Comparator;

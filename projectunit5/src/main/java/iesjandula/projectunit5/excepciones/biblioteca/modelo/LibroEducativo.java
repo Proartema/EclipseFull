@@ -1,4 +1,4 @@
-package iesjandula.projectunit5.excepciones.bibliotecas;
+package iesjandula.projectunit5.excepciones.biblioteca.modelo;
 
 public class LibroEducativo extends Libro{
 	

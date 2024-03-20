@@ -1,7 +1,10 @@
-package iesjandula.projectunit5.excepciones.bibliotecas;
+package iesjandula.projectunit5.excepciones.biblioteca.modelo;
 
 import java.util.Comparator;
 import java.util.Objects;
+
+import iesjandula.projectunit5.excepciones.biblioteca.interfaces.IEducativo;
+import iesjandula.projectunit5.excepciones.biblioteca.interfaces.InfoAutor;
 
 public abstract class Libro implements Comparable<Libro>, InfoAutor, IEducativo {
 

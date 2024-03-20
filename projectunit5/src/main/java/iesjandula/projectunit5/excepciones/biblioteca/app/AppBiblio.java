@@ -1,6 +1,13 @@
-package iesjandula.projectunit5.excepciones.bibliotecas;
+package iesjandula.projectunit5.excepciones.biblioteca.app;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import iesjandula.projectunit5.excepciones.biblioteca.modelo.Autor;
+import iesjandula.projectunit5.excepciones.biblioteca.modelo.Biblioteca;
+import iesjandula.projectunit5.excepciones.biblioteca.modelo.EnumLibro;
+import iesjandula.projectunit5.excepciones.biblioteca.modelo.Libro;
+import iesjandula.projectunit5.excepciones.biblioteca.modelo.LibroEducativo;
+import iesjandula.projectunit5.excepciones.biblioteca.modelo.LibroFiccion;
 
 public class AppBiblio {
 
