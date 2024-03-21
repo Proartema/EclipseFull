@@ -1,9 +1,12 @@
 package iesjandula.projectunit5.excepciones.biblioteca.app;
 import java.util.InputMismatchException;
+import java.util.Optional;
 import java.util.Scanner;
 
+import iesjandula.projectunit5.excepciones.biblioteca.excepciones.EntradaDatosException;
 import iesjandula.projectunit5.excepciones.biblioteca.modelo.Autor;
 import iesjandula.projectunit5.excepciones.biblioteca.modelo.Biblioteca;
+import iesjandula.projectunit5.excepciones.biblioteca.modelo.EntradaDeDatos;
 import iesjandula.projectunit5.excepciones.biblioteca.modelo.EnumLibro;
 import iesjandula.projectunit5.excepciones.biblioteca.modelo.Libro;
 import iesjandula.projectunit5.excepciones.biblioteca.modelo.LibroEducativo;
@@ -48,8 +51,14 @@ public class AppBiblio {
         	   biblio.listarLibrosEducativos();
            }
            case 4 -> {
-        	   Libro libro = introducirLibro();
-               System.out.println("Libro Introducida correctamente");
+        	 
+        	   Optional<Libro> optLibro= introducirLibro();
+        	   if(optLibro.isEmpty()) {
+        		   //hago cosas
+        	   }
+        	   else if (optLibro.isPresent()){
+        		   biblio.listarLibros();
+        	   }
 
            }
 
@@ -114,31 +123,32 @@ public class AppBiblio {
        
    }
    
-   private static Libro introducirLibro() {
+   private static Optional<Libro> introducirLibro() {
 	   Libro libroRes=null;
+	   
+	   Optional<Libro>libroResOpt = java.util.Optional.empty();
 	   String titulo;
 		 Autor autor;
 		 int annioPublicacion;
 		 String editorial;
 		 String referencia;
-		EnumLibro tipoLibro;
+		EnumLibro tipoLibro=null;
 	   
-	  
+	  try {
 	   System.out.println("Introduzca un titulo para el libro:");
-	   titulo=input.nextLine();
+	   titulo=EntradaDeDatos.leerTitulo();
 	   System.out.println("Introduzca el autor:");
 	   autor=leerAutor();
 	   System.out.println("Introduzca el año de publicación:");
-	   annioPublicacion=input.nextInt();
-	   System.out.println("Introduzca el año de publicación:");
-	   annioPublicacion=input.nextInt();
+	   annioPublicacion=EntradaDeDatos.leerAnnio();
 	   System.out.println("Introduzca la editorial:");
-	   editorial=input.nextLine();
+	   editorial=EntradaDeDatos.leerEditorial();
 	   System.out.println("Introduzca el numero de referencia:");
-	   referencia=input.nextLine();
+	   referencia=EntradaDeDatos.leeReferenciaLibro();
 	   System.out.println("Introduzca el tipo de libro:");
 	   tipoLibro=leerTipoLibro();
-	   
+	 
+	  
 	   if (tipoLibro.esEducativo(tipoLibro)) {
 		   System.out.println("Introduzca la materia del libro:");
 		   
@@ -149,28 +159,46 @@ public class AppBiblio {
 	   else {
 		   libroRes =new LibroFiccion(titulo,autor,annioPublicacion,editorial,referencia,tipoLibro);
 	   }
+	  } catch (EntradaDatosException ede) {
+		  System.out.println("Error en la entrada de datos. " + ede.getMessage());
+		  EntradaDeDatos.pulsaEnterParaContinuar();
+	  }
+	  finally {
+		  
+		  if(libroRes!=null) {
+			  libroResOpt.of(libroRes);
+			  System.out.println("El libro " + libroRes.getTitulo()+ "se ha introducido correctamente.");
+		  }
+		  else {
+			  libroResOpt=Optional.empty();
+			  System.out.println("El libro " + libroRes.getTitulo()+ "se ha introducido incorrectamente.");
+		  }
+	  }
 	   
 	   
-	   return libroRes;
+	   return libroResOpt;
    }
    
-   private static Autor leerAutor() {
+   private static Autor leerAutor() throws EntradaDatosException {
+	   String nombreYApellidos="";
+	   
 	   String nombre;
 	   String apellidos;
 	   String dni;
 	   
-	   System.out.println("Introduzca el nombre del autor:");
-	   nombre=input.nextLine();
-	   System.out.println("Introduzca los apellidos del autor:");
-	   apellidos=input.nextLine();
+	   System.out.println("Introduzca el nombre y apellidos del autor:");
+	   nombreYApellidos=EntradaDeDatos.leerNombreYApellidosAutor();
+	   nombre= EntradaDeDatos.getNombreAutor(nombreYApellidos);
+	   apellidos= nombre= EntradaDeDatos.getApellidosAutor(nombreYApellidos);
+	 
 	   System.out.println("Introduzca el dni del autor:");
-	   dni=input.nextLine();
+	   dni=EntradaDeDatos.leerDniAutor();
 	   
 	   Autor autor= new Autor(nombre,apellidos,dni);
 	   return autor;
    }
    
-   private static EnumLibro leerTipoLibro() {
+   private static EnumLibro leerTipoLibro() throws EntradaDatosException {
 	   EnumLibro tipolibro;
 	   
 	   System.out.println("Introduzca el tipo de libro:");
@@ -181,7 +209,7 @@ public class AppBiblio {
 	   System.out.println("4. Cuentos");
 	   
 	   int indice=input.nextInt();
-	   tipolibro= EnumLibro.values()[indice];
+	   tipolibro= EntradaDeDatos.leerTipoLibro();
 	   return tipolibro;
    }
    

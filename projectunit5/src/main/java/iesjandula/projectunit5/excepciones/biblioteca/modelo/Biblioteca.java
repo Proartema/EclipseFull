@@ -41,7 +41,15 @@ public class Biblioteca {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
+	/**
+	 * This method add a book (Libro class) to the library
+	 * only if there is no room available in the Library
+	 * 
+	 * 
+	 * 
+	 * 
+	 * @param libro a book to be added up to the library
+	 */
 	
 	public void agregarLibro(Libro libro) {
 
