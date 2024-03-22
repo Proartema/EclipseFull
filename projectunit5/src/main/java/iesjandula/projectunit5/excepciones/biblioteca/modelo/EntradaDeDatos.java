@@ -3,6 +3,11 @@ package iesjandula.projectunit5.excepciones.biblioteca.modelo;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.Marker;
+import org.apache.logging.log4j.MarkerManager;
+
 import iesjandula.projectunit5.excepciones.biblioteca.excepciones.EntradaDatosException;
 import iesjandula.projectunit5.excepciones.biblioteca.excepciones.MenuException;
 import iesjandula.projectunit5.excepciones.biblioteca.modelo.EnumLibro;
@@ -10,8 +15,16 @@ import iesjandula.projectunit5.excepciones.biblioteca.modelo.EnumLibro;
 public class EntradaDeDatos {
    
    private static final Scanner sc= new Scanner(System.in);
+   
+
+	
    private static final String SEPARADOR_REFERENCIA="-";
    private static final int LONGITUD_REFERENCIA=17;
+   
+   private static final Logger logger = LogManager.getLogger();
+   private static final Marker marker = MarkerManager.getMarker("AppBiblio");
+   
+   
    public static int leerOpcionMenu(int min, int max) throws MenuException {
 	   int opcion = -1;
        String opcionInput = sc.nextLine();
@@ -84,7 +97,11 @@ public class EntradaDeDatos {
     	   cont++;
     	   
     	   	
-   } if (!bCorrecto) {
+   } 
+       logger.debug(marker, "El while de validación de la referencia del libro funciona correctamente.");
+       
+       
+       if (!bCorrecto) {
 	   throw new EntradaDatosException("Incorrecto, siga el tipo de referencia.");
    }
        return referencia;
@@ -149,11 +166,12 @@ public class EntradaDeDatos {
        String nombreApellidos=sc.nextLine();
        nombreApellidos.trim();
        StringTokenizer tokens = new StringTokenizer(nombreApellidos);
+       logger.debug(marker, "Comienzo del while de nombre y apellidos.");
        while (tokens.hasMoreTokens()) {
     	   
     	   nombreApellidosFormateado = nombreApellidosFormateado + " " + primeraMayuscula(tokens.nextToken());
        }
-       
+       logger.debug(marker, "El while funciona correctamente.");
        nombreApellidosFormateado.trim();
 	return nombreApellidosFormateado;
        

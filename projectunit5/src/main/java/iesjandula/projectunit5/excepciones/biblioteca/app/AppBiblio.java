@@ -3,7 +3,13 @@ import java.util.InputMismatchException;
 import java.util.Optional;
 import java.util.Scanner;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.Marker;
+import org.apache.logging.log4j.MarkerManager;
+
 import iesjandula.projectunit5.excepciones.biblioteca.excepciones.EntradaDatosException;
+import iesjandula.projectunit5.excepciones.biblioteca.excepciones.MenuException;
 import iesjandula.projectunit5.excepciones.biblioteca.modelo.Autor;
 import iesjandula.projectunit5.excepciones.biblioteca.modelo.Biblioteca;
 import iesjandula.projectunit5.excepciones.biblioteca.modelo.EntradaDeDatos;
@@ -14,6 +20,16 @@ import iesjandula.projectunit5.excepciones.biblioteca.modelo.LibroFiccion;
 
 public class AppBiblio {
 
+	static {
+		String fileConfig = System.getProperty("user.dir") + "\\src\\main\\resources\\log4j2.properties";
+
+		System.setProperty("log4j2.configurationFile", fileConfig);
+
+	}
+	
+	private static final Logger appLogger = LogManager.getLogger();
+	private static final Marker marker = MarkerManager.getMarker("AppBiblio");
+	
    private static Scanner input;
 
    public static void main(String[] args) {
@@ -30,7 +46,9 @@ public class AppBiblio {
        boolean bsalir = true;
 
        while (bsalir) {
-
+    	   try {
+    		   
+    	   
            opcion = opcionesMenu();
 
            switch (opcion) {
@@ -53,12 +71,14 @@ public class AppBiblio {
            case 4 -> {
         	 
         	   Optional<Libro> optLibro= introducirLibro();
-        	   if(optLibro.isEmpty()) {
-        		   //hago cosas
+        	   
+        	   while (optLibro.isEmpty()) {
+        		  System.out.println("Introducir el libro de nuevo"); 
+        		  optLibro= introducirLibro();
         	   }
-        	   else if (optLibro.isPresent()){
+        	   
         		   biblio.listarLibros();
-        	   }
+        	   
 
            }
 
@@ -84,10 +104,17 @@ public class AppBiblio {
 
            case 7 -> {
         	   
+        	   bsalir=false;
                
            }
 
-           
+           } 
+           }catch (MenuException e) {
+        	   
+        	   System.out.println("Error en la opción de menu introduzca la correcta. \n" + e.getMessage());
+        	   
+        	   appLogger.error(marker,"Error en la opción de menu introduzca la correcta. \n" + e.getMessage());
+        	   EntradaDeDatos.pulsaEnterParaContinuar();
            
           
 
@@ -96,7 +123,7 @@ public class AppBiblio {
 
    }
 
-   private static int opcionesMenu() {
+   private static int opcionesMenu() throws MenuException {
        // TODO Auto-generated method stub
        int res = -1;
 
@@ -113,7 +140,7 @@ public class AppBiblio {
        System.out.println("--7 Ordenar");
        System.out.println("--8 ");
        
-           res = input.nextInt();
+           res = EntradaDeDatos.leerOpcionMenu(1, 7);
            
            input.nextLine();
 
@@ -160,6 +187,8 @@ public class AppBiblio {
 		   libroRes =new LibroFiccion(titulo,autor,annioPublicacion,editorial,referencia,tipoLibro);
 	   }
 	  } catch (EntradaDatosException ede) {
+		  appLogger.error(marker,"Error en la entrada de datos. " + ede.getMessage());
+		  
 		  System.out.println("Error en la entrada de datos. " + ede.getMessage());
 		  EntradaDeDatos.pulsaEnterParaContinuar();
 	  }
@@ -167,11 +196,13 @@ public class AppBiblio {
 		  
 		  if(libroRes!=null) {
 			  libroResOpt.of(libroRes);
+			  appLogger.info(marker,"El libro " + libroRes.getTitulo()+ "se ha introducido correctamente.");
+			  
 			  System.out.println("El libro " + libroRes.getTitulo()+ "se ha introducido correctamente.");
 		  }
 		  else {
 			  libroResOpt=Optional.empty();
-			  System.out.println("El libro " + libroRes.getTitulo()+ "se ha introducido incorrectamente.");
+			  appLogger.info("El libro " + libroRes.getTitulo()+ "se ha introducido incorrectamente.");
 		  }
 	  }
 	   

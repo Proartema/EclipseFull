@@ -5,16 +5,51 @@ import java.util.Objects;
 
 import iesjandula.projectunit5.excepciones.biblioteca.interfaces.IEducativo;
 import iesjandula.projectunit5.excepciones.biblioteca.interfaces.InfoAutor;
-
+/**
+ * {@summary Libro is the abstract class that aims to represent books in our library}
+ * 
+ * Libro is extennded by two concrete classes: {@link LibroEducativo} and {@link LibroFiccion}
+ * 
+ * It will be managed in the Biblioteca Class. The biblioteca class is an abstraction of a Library
+ * 
+ * @author Virginia Scrummaster
+ * @since 1.0
+ * @version 1.1
+ * 
+ */
 public abstract class Libro implements Comparable<Libro>, InfoAutor, IEducativo {
-
+	
+	/**
+	 * Store a book title. The form of its representation is the first word in Capital letters
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
 	private String titulo;
+	/**
+	 * 
+	 * The autor comprises all the significant data for the book author
+	 * @see Autor
+	 */
 	private Autor autor;
 	private int annioPublicacion;
 	private String editorial;
 	private String referencia;
 	private EnumLibro tipoLibro;
-
+	
+	/**
+	 * The constructor with parameters provides an instance of the Libro class.
+	 * There is no parameterless constructor. It is mandatory to build the object
+	 * relying on all it's attributes.
+	 * 
+	 * @param titulo
+	 * @param autor
+	 * @param annioPublicacion the year of edition when the book came out
+	 * @param editorial The Publisher
+	 * @param referencia the look reference in ISBN format
+	 * @param tipoLibro an Enum type with five kinds of books (@link EnumLibro}
+	 */
 	public Libro(String titulo, Autor autor, int annioPublicacion,
 			String editorial, String referencia, EnumLibro tipoLibro) {
 
