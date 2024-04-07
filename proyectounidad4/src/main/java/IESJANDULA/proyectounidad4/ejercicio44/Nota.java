@@ -7,12 +7,14 @@ public abstract class Nota implements Comparable<Nota>{
 	private int identificador;
 	private String contenido;
 	private int numPalabraComienzo;
+	private EnumNota tipo;
 	
-	public Nota(int identificador, String contenido, int numPalabraComienzo) {
+	public Nota(int identificador, String contenido, int numPalabraComienzo,EnumNota tipo) {
 		super();
 		this.identificador = identificador;
 		this.contenido = contenido;
 		this.numPalabraComienzo = numPalabraComienzo;
+		this.tipo = tipo;
 	}
 
 	public int getIdentificador() {
@@ -25,6 +27,10 @@ public abstract class Nota implements Comparable<Nota>{
 
 	public int getNumPalabraComienzo() {
 		return numPalabraComienzo;
+	}
+	
+	public EnumNota getTipo() {
+		return tipo;
 	}
 
 	public void setIdentificador(int identificador) {

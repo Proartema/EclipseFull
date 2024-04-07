@@ -2,18 +2,18 @@ package IESJANDULA.proyectounidad4.ejercicio44;
 
 public class NotaAlarma extends Nota{
 		
-	private String hora;
+	private int hora;
 
-	public NotaAlarma(int identificador, String contenido, int numPalabraComienzo,String hora) {
-		super(identificador, contenido, numPalabraComienzo);
+	public NotaAlarma(int identificador, String contenido, int numPalabraComienzo,EnumNota tipo, int hora) {
+		super(identificador, contenido, numPalabraComienzo, EnumNota tipo);
 		this.hora = hora;
 	}
 
-	public String getHora() {
+	public int getHora() {
 		return hora;
 	}
 
-	public void setHora(String hora) {
+	public void setHora(int hora) {
 		this.hora = hora;
 	}
 	

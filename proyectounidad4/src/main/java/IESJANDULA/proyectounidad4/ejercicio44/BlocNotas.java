@@ -1,13 +1,13 @@
 package IESJANDULA.proyectounidad4.ejercicio44;
 
-import java.util.Arrays;
-import java.util.Comparator;
 
-public class BlocNotas {
+public class BlocNotas implements tipoNota{
 	private static final int CAPACIDAD = 300;
 	private static Nota notaNula= new NotaMarcada(0,"ZZZZZZ",0,"ZZZZZZ");
+	private Nota nota;
 	private Nota[] notas;
 	private int contNotas;
+	
 	
 	public BlocNotas() {
 		notas = new Nota[CAPACIDAD];
@@ -93,37 +93,23 @@ public class BlocNotas {
 			}
 			
 		}
-	 public boolean hayNotas() {
+	 public boolean hayNotas() { 
 			
 			return contNotas>0;
 		}
-	 
-	 public void ordenarNotas() {
-		 
-		 Arrays.sort(notas);
-	 }
-	 
-	 public void ordenarNotas(Comparator<Nota> comp) {
-		 
-		 Arrays.sort(notas, comp);
-	 }
-	 
-	 public Nota []  devuelvaNotasOrdenado() {
-		 
-		 Nota [] res= this.getNotas();
-		 
-		 Arrays.sort(res);
-		 
-		 return res;
-	 }
+
+	@Override
+	public EnumNota devuelveTipoNota() {
+		EnumNota tipoNota;
+		if (nota.tipoNota()==EnumNota.NOTA_ALARMA) {
+			tipoNota=EnumNota.NOTA_ALARMA;
+		}
+		else {
+			tipoNota=EnumNota.NOTA_MARCADA;
+		}
+		return tipoNota;
+	}
 	
-	 public Nota []  devuelvaNotasOrdenado(Comparator<Nota> comp) {
-		 
-		 Nota [] res= this.getNotas();
-		 
-		 Arrays.sort(res,comp);
-		 
-		 return res;
-	 }
+	
 	
 }

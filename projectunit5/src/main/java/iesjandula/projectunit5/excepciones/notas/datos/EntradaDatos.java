@@ -4,10 +4,13 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 
 import iesjandula.projectunit5.excepciones.notas.exception.EntradaDeDatosException;
+import iesjandula.projectunit5.excepciones.notas.exception.MenuException;
 
 
 
 public class EntradaDatos {
+	
+	protected static long nuevoId=0; 
 	
 	 private static final Scanner sc= new Scanner(System.in);
 	
@@ -83,15 +86,33 @@ public class EntradaDatos {
 		 
 		 
 	 }
-	 public static String getHora() {
+	 public static String getHora() throws EntradaDeDatosException {
 		 String texto = sc.nextLine();
 		 
 		 StringTokenizer tokens = new StringTokenizer(texto,":");
+		 int horas=tokens.countTokens();
+		 int tiempo[]= new int[horas];
+		 for (int i=0; i<tiempo.length; i++) {
+			 String num =tokens.nextToken();
+			 
+			 tiempo[i]= Integer.valueOf(num).intValue();
+		 }
+		if (tokens.countTokens()>3||tokens.countTokens()<3) {
+			throw new EntradaDeDatosException("Solo se permiten horas, minutos y segundos.");
+		 }
+		
+		 else if (tiempo[0]<00||tiempo[0]>23||tiempo[1]<00||tiempo[1]>59||tiempo[2]<00||tiempo[2]>59){
+			throw new EntradaDeDatosException("No puede tener un formato distinto de hh:mm:ss."); 
+		 }
 		 
-		 if (tokens.countTokens()>3||)
-		 return null;
+		
+		 return texto;
 		 
 		 
 	 }
+	 public static void incrementaId() {
+		 nuevoId++;
+	 }
+	 
 	 
 }
